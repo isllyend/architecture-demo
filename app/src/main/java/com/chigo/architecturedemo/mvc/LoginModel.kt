@@ -26,13 +26,13 @@ class LoginModel : IModel {
     override fun login(login: Login) {
         Log.e("Chigo model login",login.toString());
         // 处理数据中
-        view?.onDataHanding()
+        view.onDataHanding()
         handler.removeCallbacksAndMessages(null)
         // 延迟来模拟网络或者磁盘操作
         handler.postDelayed({
             // 数据处理完成，通知 View 更新界面
             var msg=if (login.password==="123"&&login.account==="1234") "login success" else "account or password error "
-            view?.onDataHanded(msg)
+            view.onDataHanded(msg)
         }, 3000)
     }
 

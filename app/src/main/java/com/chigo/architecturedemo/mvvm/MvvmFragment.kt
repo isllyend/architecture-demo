@@ -4,9 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.chigo.architecturedemo.R
-import kotlinx.android.synthetic.main.architecture.*
+import com.chigo.architecturedemo.databinding.DatabindingArchitectureBinding
 
 /**
  * <pre>
@@ -30,13 +31,20 @@ class MvvmFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.architecture, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        tvTitle.text="MVVM"
+        val binding: DatabindingArchitectureBinding =
+            DataBindingUtil.inflate(
+                inflater,
+                R.layout.databinding_architecture,
+                container,
+                false
+            );
+        binding.lifecycleOwner = this
+        val loginViewModel = LoginViewModel()
+        val loginModel=LoginModel();
+        loginModel.setViewModel(loginViewModel)
+        loginViewModel.setModel(loginModel)
+        binding.viewmodel = loginViewModel
+        return binding.root
     }
 
 }

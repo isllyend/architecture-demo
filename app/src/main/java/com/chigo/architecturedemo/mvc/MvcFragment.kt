@@ -41,9 +41,7 @@ class MvcFragment : Fragment(), IView {
         super.onViewCreated(view, savedInstanceState)
         setController(loginController)
         loginModel.setView(this)
-        if (loginModel!=null){
-            Log.e("Chigo","login model not null");
-        }
+        Log.e("Chigo","login model not null")
 
         tvTitle.text = "MVC"
 
